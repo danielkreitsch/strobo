@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Neue Gruppe</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item class="custom-item round-edge" style="margin-top: 15px;">
+    <ion-label [hidden]="!nameMissingErrorDisplayed" position="stacked" color="danger">Name fehlt</ion-label>
+    <ion-label [hidden]="nameMissingErrorDisplayed" position="stacked" color="primary">Name</ion-label>
+    <ion-input type="text" (input)="onNameUpdate($event)"></ion-input>
+  </ion-item>
+
+  <!-- List available devices -->
+  <h4>Geräte</h4>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let device of devices, let i = index" size="12">
+        <ion-item class="custom-item round-edge">
+          <ion-label>{{device.name}}</ion-label>
+          <ion-checkbox visible="false" slot="end" [(ngModel)]="checked[i]"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-button expand="full" class="ion-no-margin" (click)="onCancelClick()">Abbrechen</ion-button>
+      </ion-col>
+      <ion-col class="ion-no-padding">
+        <ion-button expand="full" class="ion-no-margin" (click)="onCreateClick()">Erstellen</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

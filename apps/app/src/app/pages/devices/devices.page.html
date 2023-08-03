@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <marquee [innerHTML]="quotesString" [scrollAmount]="8"></marquee>
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="presentAddMenu($event)">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <!-- List groups -->
+    <ion-item-group *ngFor="let group of groups; trackBy: trackGroups" class="ion-margin-bottom">
+
+        <!-- Group button -->
+        <ion-item class="group-button round-edge-top">
+            <ion-label style="font-weight: bold; font-size: 1.1em;">{{group?.name}}</ion-label>
+            <!--<ion-toggle id="group-{{group?.id}}-toggle" [hidden]="!hasConnectedDevice(group)" slot="end" (touchstart)="disableButtonAction(500)"
+                        [checked]="group.active" [(ngModel)]="group.active" (ngModelChange)="onGroupToggleSwitch(group)"></ion-toggle>-->
+            <ion-buttons slot="end" style="margin-right: -10px;">
+                <ion-button (click)="presentGroupContextMenu(group, $event)">
+                    <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-item>
+
+        <!-- List devices belonging to the group -->
+        <ion-item *ngFor="let device of group.devices; let last = last; trackBy: trackDevices" lines="none" class="device-button" [class.round-edge-bottom]="last"
+                  button (click)="onDeviceClick(device)"
+                  ion-long-press [interval]="200" (pressed)="onDevicePress($event)" (longPressed)="onDeviceLongPress(device)">
+            <!--<ion-icon slot="start" name="bulb" [style]="'margin-right: 15px; color: rgb(' + device?.color.r + ',' + device?.color.g + ',' + device?.color.b + ');'"></ion-icon>-->
+            <ion-icon slot="start" name="bulb" style="margin-right: 15px;"></ion-icon>
+            <ion-label>{{device?.name}}</ion-label>
+            <ion-toggle [hidden]="!device.connected" slot="end" (touchstart)="disableButtonAction(500)"
+                        [checked]="device.active" [(ngModel)]="device.active" (ngModelChange)="onDeviceToggleSwitch(group, device)"></ion-toggle>
+            <ion-icon [hidden]="device.connected" slot="end" name="cloud-offline"></ion-icon>
+        </ion-item>
+
+    </ion-item-group>
+
+    <!-- List devices without group -->
+    <ion-item *ngFor="let device of grouplessDevices; trackBy: trackDevices" lines="none" class="device-button ion-margin-bottom round-edge"
+              button (click)="onDeviceClick(device)" ion-long-press [interval]="200" (pressed)="onDevicePress($event)" (longPressed)="onDeviceLongPress(device)">
+        <ion-icon slot="start" name="bulb" color="white" class="list-main-icon" style="margin-right: 15px;"></ion-icon>
+        <ion-label>{{device?.name}}</ion-label>
+        <ion-toggle [hidden]="!device.connected" slot="end" (touchstart)="disableButtonAction(500)"
+                    [checked]="device.active" [(ngModel)]="device.active" (ngModelChange)="onDeviceToggleSwitch(null, device)"></ion-toggle>
+        <ion-icon [hidden]="device.connected" slot="end" name="cloud-offline"></ion-icon>
+    </ion-item>
+
+    <ion-button style="width: 100%; height: 50px;" color="dark" (click)="onCookingModeClick()">Kochen</ion-button>
+
+    <ion-button style="width: 100%; height: 50px;" color="dark" (click)="onRefreshClick()">Refreshaltefolie</ion-button>
+
+    <ion-button style="width: 100%; height: 80px;" color="dark" (click)="onBeatSyncClick()">Gib mir nen Beat</ion-button>
+
+</ion-content>

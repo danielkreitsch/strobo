@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{animation?.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentContextMenu($event)">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+  <h2>Skript</h2>
+
+  <!-- Show script if available -->
+  <p style="font-family: Consolas">{{animation?.script}}</p>
+
+  <!-- Show info if there is no script -->
+  <p [hidden]="animation?.script != null && animation.script.length > 0">Kein Skript vorhanden</p>
+
+</ion-content>

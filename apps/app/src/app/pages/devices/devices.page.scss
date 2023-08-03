@@ -1,0 +1,34 @@
+.group-button {
+  height: 62px;
+}
+
+ion-item
+{
+  touch-action: pan-y !important;
+}
+
+ion-item ion-label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.context-menu
+{
+
+}
+
+ion-item-group ion-item {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.025);
+}
+
+ion-item-group ion-item:first-child {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.015);
+}
+
+ion-item-group ion-item:last-child {
+  border-bottom: 0;
+}
+
+marquee {
+  margin-top: 5px;
+}

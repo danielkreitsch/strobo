@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{group?.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentContextMenu($event)">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Show color Picker -->
+  <div class="ion-text-center" style="margin-top: 30px; margin-bottom: 15px;">
+    <app-color-picker [size]="280" [initialColor]="group?.color" (input)="setColor($event)"></app-color-picker>
+  </div>
+
+  <!-- List animations -->
+  <div style="padding: 5px;">
+    <h4>Animation</h4>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none" class="animation-button round-edge" [class.active]="group?.animation == null"
+                    button (click)="setAnimation(null)">
+            <ion-label>
+              <ion-icon name="ban" style="margin-right: 5px;"></ion-icon>
+              Keine
+            </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngFor="let animation of animations, let i = index" size="6">
+          <ion-item lines="none" class="animation-button round-edge" [class.active]="animation.id == group.animation?.id"
+                    button (click)="setAnimation(animation)">
+            <ion-label>{{animation.name}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

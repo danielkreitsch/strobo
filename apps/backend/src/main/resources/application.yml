@@ -1,0 +1,27 @@
+server:
+  port: ${PORT:1337}
+spring:
+  main.banner-mode: 'off'
+  datasource:
+    url: 'jdbc:mariadb://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE}?autoReconnect=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true'
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    database-platform: 'org.hibernate.dialect.MariaDBDialect'
+    hibernate.ddl-auto: update
+    show-sql: false
+    open-in-view: false
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT:5672}
+    virtual-host: ${RABBITMQ_VIRTUAL_HOST}
+    username: ${RABBITMQ_USER}
+    password: ${RABBITMQ_PASSWORD}
+  security:
+    oauth2.resourceserver.jwt.jwk-set-uri: https://www.googleapis.com/service_accounts/v1/jwk/securetoken%40system.gserviceaccount.com
+logging:
+  level:
+    root: info
+    org.springframework: info
+    com.danielkreitsch: ${LOG_LEVEL:info}
