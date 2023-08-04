@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {IonicModule} from '@ionic/angular';
-import {GroupsPageRoutingModule} from './devices-routing.module';
-import {DevicesPage} from './devices.page';
-import {LongPressModule} from "ionic-long-press";
-import {DevicesPageMenuComponent} from "../../components/devices-page-menu/devices-page-menu.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { GroupsPageRoutingModule } from './devices-routing.module';
+import { DevicesPage } from './devices.page';
+import { LongPressModule } from 'ionic-long-press';
+import { DevicesPageMenuComponent } from '../../components/devices-page-menu/devices-page-menu.component';
 
 @NgModule({
   imports: [
@@ -13,10 +13,8 @@ import {DevicesPageMenuComponent} from "../../components/devices-page-menu/devic
     FormsModule,
     IonicModule,
     GroupsPageRoutingModule,
-    LongPressModule
+    LongPressModule,
   ],
-  declarations: [DevicesPage, DevicesPageMenuComponent]
+  declarations: [DevicesPage, DevicesPageMenuComponent],
 })
-export class GroupsPageModule
-{
-}
+export class GroupsPageModule {}

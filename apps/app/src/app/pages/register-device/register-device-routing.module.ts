@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {RegisterDevicePage} from './register-device.page';
+import { RegisterDevicePage } from './register-device.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: RegisterDevicePage
-  }
+    component: RegisterDevicePage,
+  },
 ];
 
 @NgModule({

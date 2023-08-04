@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/app",
         "index": "apps/app/src/index.html",
         "main": "apps/app/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/app/tsconfig.app.json",
         "assets": [
           "apps/app/src/assets",
@@ -33,9 +29,7 @@
             "input": "apps/app/src/theme/variables.scss"
           }
         ],
-        "scripts": [
-          "apps/app/src/assets/js/html5kellycolorpicker.min.js"
-        ],
+        "scripts": ["apps/app/src/assets/js/html5kellycolorpicker.min.js"],
         "aot": false
       },
       "configurations": {
@@ -91,14 +85,9 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/app/**/*.ts",
-          "apps/app/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/app/**/*.ts", "apps/app/**/*.html"]
       }
     },
     "cap": {

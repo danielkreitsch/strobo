@@ -1,14 +1,14 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import {IonicModule} from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
-import {GroupPageRoutingModule} from './group-routing.module';
+import { GroupPageRoutingModule } from './group-routing.module';
 
-import {GroupPage} from './group.page';
-import {SharedModule} from "../../shared/shared.module";
-import {GroupPageMenuComponent} from "../../components/group-page-menu/group-page-menu.component";
+import { GroupPage } from './group.page';
+import { SharedModule } from '../../shared/shared.module';
+import { GroupPageMenuComponent } from '../../components/group-page-menu/group-page-menu.component';
 
 @NgModule({
   imports: [
@@ -16,10 +16,8 @@ import {GroupPageMenuComponent} from "../../components/group-page-menu/group-pag
     FormsModule,
     IonicModule,
     GroupPageRoutingModule,
-    SharedModule
+    SharedModule,
   ],
-  declarations: [GroupPage, GroupPageMenuComponent]
+  declarations: [GroupPage, GroupPageMenuComponent],
 })
-export class GroupPageModule
-{
-}
+export class GroupPageModule {}

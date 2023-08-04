@@ -1,6 +1,5 @@
-import {Animation} from "./animation";
+import { Animation } from './animation';
 
-export class AnimationList
-{
-  animations: Animation[] = []
+export class AnimationList {
+  animations: Animation[] = [];
 }

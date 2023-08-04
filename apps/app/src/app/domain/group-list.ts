@@ -1,6 +1,5 @@
-import {Group} from "./group";
+import { Group } from './group';
 
-export class GroupList
-{
-  groups?: Group[]
+export class GroupList {
+  groups?: Group[];
 }

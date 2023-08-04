@@ -1,6 +1,5 @@
-import {Device} from "./device";
+import { Device } from './device';
 
-export class DeviceList
-{
-  devices: Device[] = []
+export class DeviceList {
+  devices: Device[] = [];
 }

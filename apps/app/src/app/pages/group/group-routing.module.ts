@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {GroupPage} from './group.page';
+import { GroupPage } from './group.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: GroupPage
-  }
+    component: GroupPage,
+  },
 ];
 
 @NgModule({

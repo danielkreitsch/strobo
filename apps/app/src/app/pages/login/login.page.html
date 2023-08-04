@@ -1,29 +1,47 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>#Ėýêæh¿</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>#Ėýêæh¿</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class="empty-page" style="justify-content: center">
-        <h4 style="margin-left: 0; margin-bottom: 50px;">Logge dich ein</h4>
-        <form #form (submit)="onSubmit()">
-            <ion-item style="margin: 10px; --border-radius: 5px;">
-                <ion-label [hidden]="!passwordErrorVisible" position="stacked" color="danger">Passwort falsch</ion-label>
-                <ion-label [hidden]="passwordErrorVisible" position="stacked" color="primary">Passwort</ion-label>
-                <ion-input name="password" type="password" (input)="onPasswordChange($event)"></ion-input>
-            </ion-item>
-        </form>
-        <p style="margin-top: 50px; color: gray;">Das Passwort sollte identisch mit dem WLAN-Passwort sein</p>
-    </div>
+  <div class="empty-page" style="justify-content: center">
+    <h4 style="margin-left: 0; margin-bottom: 50px">Logge dich ein</h4>
+    <form #form (submit)="onSubmit()">
+      <ion-item style="margin: 10px; --border-radius: 5px">
+        <ion-label
+          [hidden]="!passwordErrorVisible"
+          position="stacked"
+          color="danger"
+          >Passwort falsch</ion-label
+        >
+        <ion-label
+          [hidden]="passwordErrorVisible"
+          position="stacked"
+          color="primary"
+          >Passwort</ion-label
+        >
+        <ion-input
+          name="password"
+          type="password"
+          (input)="onPasswordChange($event)"
+        ></ion-input>
+      </ion-item>
+    </form>
+    <p style="margin-top: 50px; color: gray">
+      Das Passwort sollte identisch mit dem WLAN-Passwort sein
+    </p>
+  </div>
 </ion-content>
 
 <ion-footer>
-    <ion-grid class="ion-no-padding">
-        <ion-row>
-            <ion-col class="ion-no-padding">
-                <ion-button expand="full" class="ion-no-margin" (click)="onSubmit()">Einloggen</ion-button>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-button expand="full" class="ion-no-margin" (click)="onSubmit()"
+          >Einloggen</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-footer>

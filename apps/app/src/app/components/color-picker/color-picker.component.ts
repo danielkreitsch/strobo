@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Color} from "../../domain/color";
-import {interval} from "rxjs";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Color } from '../../domain/color';
+import { interval } from 'rxjs';
 
 declare const KellyColorPicker: any;
 
@@ -9,29 +9,30 @@ declare const KellyColorPicker: any;
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
 })
-export class ColorPickerComponent implements OnInit
-{
+export class ColorPickerComponent implements OnInit {
   @Input()
-  initialColor: Color = new Color(255, 255, 255, 0)
+  initialColor: Color = new Color(255, 255, 255, 0);
 
   @Input()
-  size: number = 300
+  size: number = 300;
 
   @Output()
-  colorInput: EventEmitter<Color> = new EventEmitter<Color>()
+  colorInput: EventEmitter<Color> = new EventEmitter<Color>();
 
-  colorPicker: any
+  colorPicker: any;
 
-  color: Color = new Color(this.initialColor.r, this.initialColor.g, this.initialColor.b, this.initialColor.w)
+  color: Color = new Color(
+    this.initialColor.r,
+    this.initialColor.g,
+    this.initialColor.b,
+    this.initialColor.w
+  );
 
-  colorUpdatedSinceLastEmission = false
+  colorUpdatedSinceLastEmission = false;
 
-  constructor()
-  {
-  }
+  constructor() {}
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.colorPicker = new KellyColorPicker({
       place: 'picker',
       input: 'color',
@@ -44,48 +45,49 @@ export class ColorPickerComponent implements OnInit
       alphaSlider: false,
       resizeWith: true,
       userEvents: {
-        change: (self: any) =>
-        {
-          const color = self.getCurColorRgb()
-          if (color != null)
-          {
-            this.color.r = color.r
-            this.color.g = color.g
-            this.color.b = color.b
+        change: (self: any) => {
+          const color = self.getCurColorRgb();
+          if (color != null) {
+            this.color.r = color.r;
+            this.color.g = color.g;
+            this.color.b = color.b;
 
-            this.colorUpdatedSinceLastEmission = true
+            this.colorUpdatedSinceLastEmission = true;
           }
-        }
-      }
-    })
+        },
+      },
+    });
 
-    const setInitialColor = interval(20).subscribe(() =>
-    {
-      if (this.initialColor != null)
-      {
-        this.colorPicker.setColorByHex('#' + this.rgbToHex(this.initialColor.r, this.initialColor.g, this.initialColor.b))
-        setInitialColor.unsubscribe()
+    const setInitialColor = interval(20).subscribe(() => {
+      if (this.initialColor != null) {
+        this.colorPicker.setColorByHex(
+          '#' +
+            this.rgbToHex(
+              this.initialColor.r,
+              this.initialColor.g,
+              this.initialColor.b
+            )
+        );
+        setInitialColor.unsubscribe();
       }
-    })
+    });
 
-    interval(50).subscribe(() =>
-    {
-      if (this.colorUpdatedSinceLastEmission)
-      {
-        this.colorInput.emit(this.color)
-        this.colorUpdatedSinceLastEmission = false
+    interval(50).subscribe(() => {
+      if (this.colorUpdatedSinceLastEmission) {
+        this.colorInput.emit(this.color);
+        this.colorUpdatedSinceLastEmission = false;
       }
-    })
+    });
   }
 
-  componentToHex(c: number)
-  {
+  componentToHex(c: number) {
     const hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+    return hex.length == 1 ? '0' + hex : hex;
   }
 
-  rgbToHex(r: number, g: number, b: number)
-  {
-    return this.componentToHex(r) + this.componentToHex(g) + this.componentToHex(b);
+  rgbToHex(r: number, g: number, b: number) {
+    return (
+      this.componentToHex(r) + this.componentToHex(g) + this.componentToHex(b)
+    );
   }
 }

@@ -8,14 +8,22 @@
 </ion-header>
 
 <ion-content *ngIf="animation !== null">
-  <ion-item style="margin: 10px; --border-radius: 5px;">
+  <ion-item style="margin: 10px; --border-radius: 5px">
     <ion-label position="stacked">Name</ion-label>
     <ion-input [(ngModel)]="animation!.name"></ion-input>
   </ion-item>
-  <ion-item style="margin: 10px; --border-radius: 5px;">
+  <ion-item style="margin: 10px; --border-radius: 5px">
     <ion-label position="stacked">Skript</ion-label>
-    <ion-textarea style="min-height: 200px; padding-bottom: 10px; font-family: Consolas; line-height: 1.5em;"
-                  autoGrow="true" [(ngModel)]="animation!.script">
+    <ion-textarea
+      style="
+        min-height: 200px;
+        padding-bottom: 10px;
+        font-family: Consolas;
+        line-height: 1.5em;
+      "
+      autoGrow="true"
+      [(ngModel)]="animation!.script"
+    >
     </ion-textarea>
   </ion-item>
 </ion-content>
@@ -24,10 +32,17 @@
   <ion-grid class="ion-no-padding">
     <ion-row>
       <ion-col class="ion-no-padding">
-        <ion-button expand="full" class="ion-no-margin" (click)="onCancelClick()">Abbrechen</ion-button>
+        <ion-button
+          expand="full"
+          class="ion-no-margin"
+          (click)="onCancelClick()"
+          >Abbrechen</ion-button
+        >
       </ion-col>
       <ion-col class="ion-no-padding">
-        <ion-button expand="full" class="ion-no-margin" (click)="onSaveClick()">Speichern</ion-button>
+        <ion-button expand="full" class="ion-no-margin" (click)="onSaveClick()"
+          >Speichern</ion-button
+        >
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -4,17 +4,28 @@
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Gerät hinzufügen</ion-title>
-    <ion-spinner duration="3000" slot="end" class="ion-margin-end"></ion-spinner>
+    <ion-spinner
+      duration="3000"
+      slot="end"
+      class="ion-margin-end"
+    ></ion-spinner>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <!-- List unregistered connected devices -->
-  <ion-item *ngFor="let device of devices; trackBy: trackDevices" class="new-device-button"
-            button detail (click)="presentNamePrompt(device)">
-    <ion-icon name="bulb" color="white" style="margin-right: 10px;"></ion-icon>
-    <ion-label>Strobo Streifen (<pre>{{device.id}}</pre>)</ion-label>
+  <ion-item
+    *ngFor="let device of devices; trackBy: trackDevices"
+    class="new-device-button"
+    button
+    detail
+    (click)="presentNamePrompt(device)"
+  >
+    <ion-icon name="bulb" color="white" style="margin-right: 10px"></ion-icon>
+    <ion-label
+      >Strobo Streifen (
+      <pre>{{device.id}}</pre>
+      )</ion-label
+    >
   </ion-item>
-
 </ion-content>

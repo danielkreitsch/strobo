@@ -1,91 +1,145 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-back-button defaultHref="/"></ion-back-button>
-        </ion-buttons>
-        <ion-title>{{device?.name}}</ion-title>
-        <ion-buttons slot="end">
-            <ion-toggle *ngIf="device != null" [hidden]="!device.connected" slot="end"
-                        [checked]="device.active" [(ngModel)]="device.active" (ngModelChange)="onDeviceToggleSwitch(device)"></ion-toggle>
-            <ion-icon *ngIf="device != null" [hidden]="device.connected" slot="end" name="cloud-offline" style="color: gray; margin-right: 10px;"></ion-icon>
-            <ion-button (click)="presentContextMenu($event)">
-                <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{device?.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-toggle
+        *ngIf="device != null"
+        [hidden]="!device.connected"
+        slot="end"
+        [checked]="device.active"
+        [(ngModel)]="device.active"
+        (ngModelChange)="onDeviceToggleSwitch(device)"
+      ></ion-toggle>
+      <ion-icon
+        *ngIf="device != null"
+        [hidden]="device.connected"
+        slot="end"
+        name="cloud-offline"
+        style="color: gray; margin-right: 10px"
+      ></ion-icon>
+      <ion-button (click)="presentContextMenu($event)">
+        <ion-icon
+          slot="icon-only"
+          ios="ellipsis-horizontal"
+          md="ellipsis-vertical"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <!-- Time adjustment -->
-    <div *ngIf="device != null && device.connected && device.active" style="padding: 5px; padding-right: 20px;">
-        <h4 style="float: left;">Kalibrierung</h4>
-        <p style="float: right; text-align: right; margin-top: 20px;">{{device.timeAdjustment}} ms</p>
-        <ion-range min="-50" max="50" step="1" color="dark" [value]="device.timeAdjustment" (ionChange)="setTimeAdjustment($event)"></ion-range>
-    </div>
+  <!-- Time adjustment -->
+  <div
+    *ngIf="device != null && device.connected && device.active"
+    style="padding: 5px; padding-right: 20px"
+  >
+    <h4 style="float: left">Kalibrierung</h4>
+    <p style="float: right; text-align: right; margin-top: 20px">
+      {{device.timeAdjustment}} ms
+    </p>
+    <ion-range
+      min="-50"
+      max="50"
+      step="1"
+      color="dark"
+      [value]="device.timeAdjustment"
+      (ionChange)="setTimeAdjustment($event)"
+    ></ion-range>
+  </div>
 
-    <!-- List animations -->
-    <div *ngIf="device != null && device.connected && device.active" style="padding: 5px;">
-        <h4>Animationen</h4>
-        <ion-grid>
-            <ion-row>
-                <ion-col size="6">
-                    <ion-item lines="none" class="animation-button round-edge" [class.active]="device.animation == null"
-                              button (click)="setAnimation(null)">
-                        <ion-label>
-                            Still
-                        </ion-label>
-                    </ion-item>
-                </ion-col>
-                <ion-col *ngFor="let animation of animations, let i = index" size="6">
-                    <ion-item lines="none" class="animation-button round-edge" [class.active]="animation.id == device.animation?.id"
-                              button (click)="setAnimation(animation)">
-                        <ion-label *ngIf="animation.id == 'rainbow'">
-                            <span style="color: red;">R</span>
-                            <span style="color: orange;">a</span>
-                            <span style="color: yellow;">i</span>
-                            <span style="color: #00bf00;">n</span>
-                            <span style="color: aqua;">b</span>
-                            <span style="color: #005bff;">o</span>
-                            <span style="color: #c700c7;">w</span>
-                        </ion-label>
-                        <ion-label *ngIf="animation.id != 'rainbow'">
-                            {{animation.name}}
-                        </ion-label>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
+  <!-- List animations -->
+  <div
+    *ngIf="device != null && device.connected && device.active"
+    style="padding: 5px"
+  >
+    <h4>Animationen</h4>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item
+            lines="none"
+            class="animation-button round-edge"
+            [class.active]="device.animation == null"
+            button
+            (click)="setAnimation(null)"
+          >
+            <ion-label> Still </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngFor="let animation of animations, let i = index" size="6">
+          <ion-item
+            lines="none"
+            class="animation-button round-edge"
+            [class.active]="animation.id == device.animation?.id"
+            button
+            (click)="setAnimation(animation)"
+          >
+            <ion-label *ngIf="animation.id == 'rainbow'">
+              <span style="color: red">R</span>
+              <span style="color: orange">a</span>
+              <span style="color: yellow">i</span>
+              <span style="color: #00bf00">n</span>
+              <span style="color: aqua">b</span>
+              <span style="color: #005bff">o</span>
+              <span style="color: #c700c7">w</span>
+            </ion-label>
+            <ion-label *ngIf="animation.id != 'rainbow'">
+              {{animation.name}}
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
-    <!-- Show color Picker -->
-    <div style="padding: 5px;" *ngIf="device != null && device.connected && device.active
-    && (device.animation == null || device.animation.id == 'moving-points' || device.animation.id == 'pulse' || device.animation.id == 'random-shot' || device.animation.id == 'strobo')">
-        <h4>Farbe</h4>
-        <ion-grid>
-            <ion-row>
-                <ion-col *ngFor="let color of colors, let i = index" size="2">
-                    <ion-item lines="none" class="color-button round-edge" [class.active]="isSameColor(color, device.color)"
-                              button (click)="setColor(color)">
-                        <ion-icon name="ellipse" [style]="'color: rgb(' + color.r + ',' + color.g + ',' + color.b + ');'"></ion-icon>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
-    <!--<div *ngIf="device != null && device.active && (device.animation == null || device.animation.id == 'moving-points' || device.animation.id == 'pulse' || device.animation.id == 'random-shot' || device.animation.id == 'strobo')"
+  <!-- Show color Picker -->
+  <div
+    style="padding: 5px"
+    *ngIf="device != null && device.connected && device.active
+    && (device.animation == null || device.animation.id == 'moving-points' || device.animation.id == 'pulse' || device.animation.id == 'random-shot' || device.animation.id == 'strobo')"
+  >
+    <h4>Farbe</h4>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let color of colors, let i = index" size="2">
+          <ion-item
+            lines="none"
+            class="color-button round-edge"
+            [class.active]="isSameColor(color, device.color)"
+            button
+            (click)="setColor(color)"
+          >
+            <ion-icon
+              name="ellipse"
+              [style]="'color: rgb(' + color.r + ',' + color.g + ',' + color.b + ');'"
+            ></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <!--<div *ngIf="device != null && device.active && (device.animation == null || device.animation.id == 'moving-points' || device.animation.id == 'pulse' || device.animation.id == 'random-shot' || device.animation.id == 'strobo')"
          class="ion-text-center" style="margin-top: 30px; margin-bottom: 15px;">
       <app-color-picker [size]="280" [initialColor]="device?.color" (input)="setColor($event)"></app-color-picker>
     </div>-->
 
-    <div *ngIf="device != null && !device.connected" class="empty-page">
-        <div>
-            <h1 style="margin-top: 0; padding-top: 0;">Das Gerät ist nicht online</h1>
-            <ion-icon name="cloud-offline" style="font-size: 10em; margin: 0 auto;"></ion-icon>
-        </div>
-        <div class="schlafender-bene">
-            <p style="color: gray;">Bis das Problem gelöst ist, hier ein schlafender Bene:</p>
-            <img src="../../../assets/images/{{deviceOfflineImage}}"/>
-        </div>
+  <div *ngIf="device != null && !device.connected" class="empty-page">
+    <div>
+      <h1 style="margin-top: 0; padding-top: 0">Das Gerät ist nicht online</h1>
+      <ion-icon
+        name="cloud-offline"
+        style="font-size: 10em; margin: 0 auto"
+      ></ion-icon>
     </div>
-
+    <div class="schlafender-bene">
+      <p style="color: gray">
+        Bis das Problem gelöst ist, hier ein schlafender Bene:
+      </p>
+      <img src="../../../assets/images/{{deviceOfflineImage}}" />
+    </div>
+  </div>
 </ion-content>

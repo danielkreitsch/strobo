@@ -1,20 +1,20 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import {IonicModule} from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
-import {CreateAnimationPageRoutingModule} from './create-animation-routing.module';
+import { CreateAnimationPageRoutingModule } from './create-animation-routing.module';
 
-import {CreateAnimationPage} from './create-animation.page';
+import { CreateAnimationPage } from './create-animation.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreateAnimationPageRoutingModule
+    CreateAnimationPageRoutingModule,
   ],
-  declarations: [CreateAnimationPage]
+  declarations: [CreateAnimationPage],
 })
 export class CreateAnimationPageModule {}

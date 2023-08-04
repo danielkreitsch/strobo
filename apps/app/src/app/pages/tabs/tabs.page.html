@@ -1,6 +1,5 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-
     <!--<ion-tab-button tab="overview" (click)="navCtrl.navigateRoot('/overview', {animated: true})">
       <ion-icon name="home"></ion-icon>
       <ion-label>Übersicht</ion-label>
@@ -11,7 +10,10 @@
       <ion-label>Musik</ion-label>
     </ion-tab-button>-->
 
-    <ion-tab-button tab="devices" (click)="navCtrl.navigateRoot('/devices', {animated: true})">
+    <ion-tab-button
+      tab="devices"
+      (click)="navCtrl.navigateRoot('/devices', {animated: true})"
+    >
       <ion-icon name="bulb"></ion-icon>
       <ion-label>Geräte</ion-label>
     </ion-tab-button>
@@ -20,6 +22,5 @@
       <ion-icon name="sparkles"></ion-icon>
       <ion-label>Animationen</ion-label>
     </ion-tab-button>-->
-
   </ion-tab-bar>
 </ion-tabs>

@@ -1,16 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {Animation} from "../../domain/animation";
-import {AlertController, NavController, NavParams, PopoverController} from "@ionic/angular";
-import {AnimationService} from "../../services/animation.service";
+import { Component, OnInit } from '@angular/core';
+import { Animation } from '../../domain/animation';
+import {
+  AlertController,
+  NavController,
+  NavParams,
+  PopoverController,
+} from '@ionic/angular';
+import { AnimationService } from '../../services/animation.service';
 
 @Component({
   selector: 'strobo-animation-page-menu',
   templateUrl: './animation-page-menu.component.html',
   styleUrls: ['./animation-page-menu.component.scss'],
 })
-export class AnimationPageMenuComponent implements OnInit
-{
-  animation: Animation
+export class AnimationPageMenuComponent implements OnInit {
+  animation: Animation;
 
   constructor(
     private popoverController: PopoverController,
@@ -18,24 +22,21 @@ export class AnimationPageMenuComponent implements OnInit
     private navController: NavController,
     private animationService: AnimationService,
     navParams: NavParams
-  )
-  {
-    this.animation = navParams.get('animation')
+  ) {
+    this.animation = navParams.get('animation');
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {}
+
+  onEditClick() {
+    this.popoverController.dismiss();
+    this.navController.navigateForward(
+      '/animations/' + this.animation.id + '/edit'
+    );
   }
 
-  onEditClick()
-  {
-    this.popoverController.dismiss()
-    this.navController.navigateForward('/animations/' + this.animation.id + '/edit')
-  }
-
-  async onDeleteClick()
-  {
-    this.popoverController.dismiss()
+  async onDeleteClick() {
+    this.popoverController.dismiss();
 
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -46,22 +47,21 @@ export class AnimationPageMenuComponent implements OnInit
           text: 'Abbrechen',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: () =>
-          {
-          }
-        }, {
+          handler: () => {},
+        },
+        {
           text: 'Löschen',
-          handler: () =>
-          {
-            this.animationService.deleteAnimation(this.animation.id!).then(() =>
-            {
-              this.navController.navigateRoot(['/animations'])
-            })
-          }
-        }
-      ]
+          handler: () => {
+            this.animationService
+              .deleteAnimation(this.animation.id!)
+              .then(() => {
+                this.navController.navigateRoot(['/animations']);
+              });
+          },
+        },
+      ],
     });
 
-    await alert.present()
+    await alert.present();
   }
 }

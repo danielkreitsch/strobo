@@ -1,20 +1,15 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import {IonicModule} from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
-import {AddDevicePageRoutingModule} from './register-device-routing.module';
+import { AddDevicePageRoutingModule } from './register-device-routing.module';
 
-import {RegisterDevicePage} from './register-device.page';
+import { RegisterDevicePage } from './register-device.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AddDevicePageRoutingModule
-  ],
-  declarations: [RegisterDevicePage]
+  imports: [CommonModule, FormsModule, IonicModule, AddDevicePageRoutingModule],
+  declarations: [RegisterDevicePage],
 })
 export class AddDevicePageModule {}

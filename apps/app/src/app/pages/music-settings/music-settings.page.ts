@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'strobo-music-settings',
@@ -6,10 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./music-settings.page.scss'],
 })
 export class MusicSettingsPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
