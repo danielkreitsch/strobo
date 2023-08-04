@@ -1,0 +1,15 @@
+{
+  "name": "@strobo/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@nx/angular": "^16.6.0",
+    "@nx/workspace": "16.6.0",
+    "@nxext/ionic-angular": "^16.2.0",
+    "nx": "16.6.0",
+    "nx-cloud": "latest"
+  }
+}
