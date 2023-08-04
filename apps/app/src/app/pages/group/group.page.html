@@ -12,11 +12,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="group">
 
   <!-- Show color Picker -->
   <div class="ion-text-center" style="margin-top: 30px; margin-bottom: 15px;">
-    <app-color-picker [size]="280" [initialColor]="group?.color" (input)="setColor($event)"></app-color-picker>
+    <strobo-color-picker [size]="280" [initialColor]="group!.color!" (input)="setColor($event)"></strobo-color-picker>
   </div>
 
   <!-- List animations -->
@@ -25,7 +25,7 @@
     <ion-grid>
       <ion-row>
         <ion-col size="6">
-          <ion-item lines="none" class="animation-button round-edge" [class.active]="group?.animation == null"
+          <ion-item lines="none" class="animation-button round-edge" [class.active]="group.animation == null"
                     button (click)="setAnimation(null)">
             <ion-label>
               <ion-icon name="ban" style="margin-right: 5px;"></ion-icon>

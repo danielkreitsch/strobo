@@ -5,14 +5,14 @@ import {AlertController, NavController} from "@ionic/angular";
 import {interval, Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-add-device',
+  selector: 'strobo-add-device',
   templateUrl: './register-device.page.html',
   styleUrls: ['./register-device.page.scss'],
 })
 export class RegisterDevicePage implements OnInit
 {
-  devices: Device[]
-  refreshInterval: Subscription
+  devices: Device[] = []
+  refreshInterval?: Subscription
 
   constructor(
     private navController: NavController,
@@ -38,7 +38,7 @@ export class RegisterDevicePage implements OnInit
 
   ionViewWillLeave()
   {
-    this.refreshInterval.unsubscribe()
+    this.refreshInterval?.unsubscribe()
     this.deviceService.invalidateCache()
   }
 

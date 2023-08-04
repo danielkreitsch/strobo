@@ -4,13 +4,13 @@ import {Animation} from "../../domain/animation";
 import {NavController} from "@ionic/angular";
 
 @Component({
-  selector: 'app-animations',
+  selector: 'strobo-animations',
   templateUrl: './animations.page.html',
   styleUrls: ['./animations.page.scss'],
 })
 export class AnimationsPage implements OnInit
 {
-  animations: Animation[]
+  animations: Animation[] = []
 
   constructor(
     private navController: NavController,

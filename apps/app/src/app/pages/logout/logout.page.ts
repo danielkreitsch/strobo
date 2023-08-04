@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service"
 
 @Component({
-    selector: 'app-logout',
+    selector: 'strobo-logout',
     templateUrl: './logout.page.html',
     styleUrls: ['./logout.page.scss']
 })

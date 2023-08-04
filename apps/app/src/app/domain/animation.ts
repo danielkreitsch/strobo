@@ -1,6 +1,6 @@
 export class Animation
 {
-  id: string
-  name: string
-  script: string
+  id?: string
+  name?: string
+  script?: string
 }

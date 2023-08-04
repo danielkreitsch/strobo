@@ -10,14 +10,13 @@ import {DeviceService} from "../../services/device.service";
 import {AnimationService} from "../../services/animation.service";
 
 @Component({
-  selector: 'app-group',
+  selector: 'strobo-group',
   templateUrl: './group.page.html',
   styleUrls: ['./group.page.scss'],
 })
-export class GroupPage implements OnInit
-{
-  group: Group
-  animations: Animation[]
+export class GroupPage implements OnInit {
+  group?: Group
+  animations: Animation[] = []
 
   constructor(
     private router: Router,
@@ -27,29 +26,23 @@ export class GroupPage implements OnInit
     private groupService: GroupService,
     private deviceService: DeviceService,
     private animationService: AnimationService
-  )
-  {
+  ) {
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
   }
 
-  ionViewWillEnter()
-  {
-    this.groupService.getGroup(this.route.snapshot.paramMap.get('id')).then(group =>
-    {
+  ionViewWillEnter() {
+    this.groupService.getGroup(this.route.snapshot.paramMap.get('id')!).then(group => {
       this.group = group
     })
 
-    this.animationService.getAllAnimations().then(animations =>
-    {
+    this.animationService.getAllAnimations().then(animations => {
       this.animations = animations
     })
   }
 
-  ionViewWillLeave()
-  {
+  ionViewWillLeave() {
     this.groupService.invalidateCache()
   }
 
@@ -57,12 +50,9 @@ export class GroupPage implements OnInit
    * Change the color of the group and of all devices belonging to the group.
    * @param color The desired color.
    */
-  setColor(color: Color)
-  {
-    if (this.group != null)
-    {
-      for (let device of this.group.devices)
-      {
+  setColor(color: Color | any) {
+    if (this.group != null) {
+      for (const device of this.group.devices) {
         device.color = color
       }
 
@@ -75,10 +65,8 @@ export class GroupPage implements OnInit
    * Change the animation of the group and of all devices belonging to the group.
    * @param color The desired animation.
    */
-  setAnimation(animation: Animation)
-  {
-    if (this.group != null)
-    {
+  setAnimation(animation: Animation | null) {
+    if (this.group != null) {
       this.group.animation = animation
       this.groupService.updateGroup(this.group)
     }
@@ -93,8 +81,7 @@ export class GroupPage implements OnInit
   /**
    * Show the context menu.
    */
-  async presentContextMenu(ev: any)
-  {
+  async presentContextMenu(ev: any) {
     const popover = await this.popoverController.create(
       {
         component: GroupPageMenuComponent,

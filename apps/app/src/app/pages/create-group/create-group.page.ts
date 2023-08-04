@@ -5,15 +5,15 @@ import {AlertController, NavController} from "@ionic/angular";
 import {GroupService} from "../../services/group.service";
 
 @Component({
-  selector: 'app-create-group',
+  selector: 'strobo-create-group',
   templateUrl: './create-group.page.html',
   styleUrls: ['./create-group.page.scss'],
 })
 export class CreateGroupPage implements OnInit
 {
-  name: string = ""
-  devices: Device[]
-  checked: boolean[]
+  name = ""
+  devices: Device[] = []
+  checked: boolean[] = []
 
   nameMissingErrorDisplayed = false
 
@@ -48,12 +48,12 @@ export class CreateGroupPage implements OnInit
     }
 
     // Add selected devices
-    let deviceIds = new Array<string>()
+    const deviceIds = new Array<string>()
     this.devices.forEach((device, index) =>
     {
       if (this.checked[index])
       {
-        deviceIds.push(device.id)
+        deviceIds.push(device.id!)
       }
     })
 

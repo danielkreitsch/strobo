@@ -2,5 +2,5 @@ import {Group} from "./group";
 
 export class GroupList
 {
-  groups: Group[]
+  groups?: Group[]
 }

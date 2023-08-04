@@ -2,10 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Color} from "../../domain/color";
 import {interval} from "rxjs";
 
-declare const KellyColorPicker;
+declare const KellyColorPicker: any;
 
 @Component({
-  selector: 'app-color-picker',
+  selector: 'strobo-color-picker',
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
 })
@@ -18,7 +18,7 @@ export class ColorPickerComponent implements OnInit
   size: number = 300
 
   @Output()
-  input: EventEmitter<Color> = new EventEmitter<Color>()
+  colorInput: EventEmitter<Color> = new EventEmitter<Color>()
 
   colorPicker: any
 
@@ -44,9 +44,9 @@ export class ColorPickerComponent implements OnInit
       alphaSlider: false,
       resizeWith: true,
       userEvents: {
-        change: self =>
+        change: (self: any) =>
         {
-          let color = self.getCurColorRgb()
+          const color = self.getCurColorRgb()
           if (color != null)
           {
             this.color.r = color.r
@@ -59,7 +59,7 @@ export class ColorPickerComponent implements OnInit
       }
     })
 
-    let setInitialColor = interval(20).subscribe(() =>
+    const setInitialColor = interval(20).subscribe(() =>
     {
       if (this.initialColor != null)
       {
@@ -72,19 +72,19 @@ export class ColorPickerComponent implements OnInit
     {
       if (this.colorUpdatedSinceLastEmission)
       {
-        this.input.emit(this.color)
+        this.colorInput.emit(this.color)
         this.colorUpdatedSinceLastEmission = false
       }
     })
   }
 
-  componentToHex(c)
+  componentToHex(c: number)
   {
-    var hex = c.toString(16);
+    const hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
   }
 
-  rgbToHex(r, g, b)
+  rgbToHex(r: number, g: number, b: number)
   {
     return this.componentToHex(r) + this.componentToHex(g) + this.componentToHex(b);
   }

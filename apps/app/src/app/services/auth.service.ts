@@ -35,7 +35,7 @@ export class AuthService
         {
             this.fireAuth.signInWithEmailAndPassword(environment.auth.defaultEmail, password).then(result =>
             {
-                result.user.getIdToken(true).then(idToken =>
+                result.user!.getIdToken(true).then(idToken =>
                 {
                     localStorage.setItem("user-token", idToken)
                     this.redirectToHome()

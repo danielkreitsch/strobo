@@ -9,7 +9,7 @@ import {AnimationService} from "../../services/animation.service";
 import {Animation} from "../../domain/animation";
 
 @Component({
-    selector: 'app-device',
+    selector: 'strobo-device',
     templateUrl: './device.page.html',
     styleUrls: ['./device.page.scss']
 })
@@ -33,10 +33,9 @@ export class DevicePage implements OnInit
         "schlafender-bene/schlafender-bene-4.jpeg"
     ]
 
-    device: Device
-    animations: Animation[]
-    colorPickerVisible: boolean
-    deviceOfflineImage: string
+    device?: Device
+    animations: Animation[] = []
+    deviceOfflineImage = ""
 
     constructor(
         private router: Router,
@@ -79,7 +78,7 @@ export class DevicePage implements OnInit
      */
     fetchDevice()
     {
-        this.deviceService.getDevice(this.route.snapshot.paramMap.get('id')).then(device =>
+        this.deviceService.getDevice(this.route.snapshot.paramMap.get('id')!).then(device =>
         {
             this.device = device
         })
@@ -107,7 +106,7 @@ export class DevicePage implements OnInit
      * Change the animation of the device.
      * @param animation The desired animation.
      */
-    setAnimation(animation: Animation)
+    setAnimation(animation: Animation | null)
     {
         if (this.device != null)
         {

@@ -7,15 +7,14 @@ import {Device} from "../../domain/device";
 import {DeviceService} from "../../services/device.service";
 
 @Component({
-  selector: "app-edit-group",
+  selector: "strobo-edit-group",
   templateUrl: "./edit-group.page.html",
   styleUrls: ["./edit-group.page.scss"],
 })
-export class EditGroupPage implements OnInit
-{
-  group: Group
-  devices: Device[]
-  deviceChecked: boolean[]
+export class EditGroupPage implements OnInit {
+  group?: Group
+  devices: Device[] = []
+  deviceChecked: boolean[] = []
 
   nameMissingErrorDisplayed = false
 
@@ -25,61 +24,52 @@ export class EditGroupPage implements OnInit
     private groupService: GroupService,
     private deviceService: DeviceService,
     private route: ActivatedRoute
-  )
-  {
+  ) {
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
   }
 
-  ionViewWillEnter()
-  {
-    this.groupService.getGroup(this.route.snapshot.paramMap.get("id")).then(group =>
-    {
+  ionViewWillEnter() {
+    this.groupService.getGroup(this.route.snapshot.paramMap.get("id")!).then(group => {
       this.group = group
 
-      this.deviceService.getRegisteredGrouplessDevices().then(devices =>
-      {
+      this.deviceService.getRegisteredGrouplessDevices().then(devices => {
         this.devices = []
-        for (let device of this.group.devices)
-        {
+        for (const device of this.group!.devices) {
           this.devices.push(device)
         }
-        for (let device of devices)
-        {
+        for (const device of devices) {
           this.devices.push(device)
         }
 
         this.deviceChecked = new Array<boolean>(this.devices.length).fill(false)
-        this.devices.forEach((device, index) =>
-        {
-          this.deviceChecked[index] = this.group.devices.some(groupDevice => groupDevice.id == device.id)
+        this.devices.forEach((device, index) => {
+          this.deviceChecked[index] = this.group!.devices.some(groupDevice => groupDevice.id == device.id)
         })
       })
     })
   }
 
-  async onSaveClick()
-  {
-    if (this.group.name.trim().length == 0)
-    {
+  async onSaveClick() {
+    if (this.group == null) {
+      return
+    }
+
+    if (this.group.name!.trim().length == 0) {
       this.nameMissingErrorDisplayed = true
       return
     }
 
     // Apply selected devices
     this.group.devices = []
-    this.devices.forEach((device, index) =>
-    {
-      if (this.deviceChecked[index])
-      {
-        this.group.devices.push(device)
+    this.devices.forEach((device, index) => {
+      if (this.deviceChecked[index]) {
+        this.group!.devices.push(device)
       }
     })
 
-    if (this.group.devices.length == 0)
-    {
+    if (this.group.devices.length == 0) {
       const alert = await this.alertController.create({
         header: "Leere Gruppe",
         message: "Es muss mindestens ein Gerät ausgewählt sein",
@@ -95,20 +85,17 @@ export class EditGroupPage implements OnInit
     }
 
     // Save and then go back
-    this.groupService.updateGroup(this.group).then(() =>
-    {
+    this.groupService.updateGroup(this.group).then(() => {
       this.groupService.invalidateCache()
       this.navController.back()
     })
   }
 
-  onCancelClick()
-  {
+  onCancelClick() {
     this.navController.back()
   }
 
-  updateGroupName(group: Group, event: any)
-  {
+  updateGroupName(group: Group, event: any) {
     group.name = (event.currentTarget as HTMLInputElement).value
     this.nameMissingErrorDisplayed = false
   }

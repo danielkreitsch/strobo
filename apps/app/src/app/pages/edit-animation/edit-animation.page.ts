@@ -5,13 +5,13 @@ import {AnimationService} from "../../services/animation.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-edit-animation',
+  selector: 'strobo-edit-animation',
   templateUrl: './edit-animation.page.html',
   styleUrls: ['./edit-animation.page.scss'],
 })
 export class EditAnimationPage implements OnInit
 {
-  animation: Animation
+  animation?: Animation
 
   constructor(
     private navController: NavController,
@@ -27,7 +27,7 @@ export class EditAnimationPage implements OnInit
 
   ionViewWillEnter()
   {
-    this.animationService.getAnimation(this.route.snapshot.paramMap.get('id')).then(animation =>
+    this.animationService.getAnimation(this.route.snapshot.paramMap.get('id')!).then(animation =>
     {
       this.animation = animation
     })
@@ -35,7 +35,7 @@ export class EditAnimationPage implements OnInit
 
   onSaveClick()
   {
-    this.animationService.updateAnimation(this.animation).then(() =>
+    this.animationService.updateAnimation(this.animation!).then(() =>
     {
       this.animationService.invalidateCache()
       this.navController.back()

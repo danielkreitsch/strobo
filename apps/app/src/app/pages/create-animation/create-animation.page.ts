@@ -3,14 +3,14 @@ import {NavController} from "@ionic/angular";
 import {AnimationService} from "../../services/animation.service";
 
 @Component({
-  selector: 'app-create-animation',
+  selector: 'strobo-create-animation',
   templateUrl: './create-animation.page.html',
   styleUrls: ['./create-animation.page.scss'],
 })
 export class CreateAnimationPage implements OnInit
 {
-  name: string
-  script: string
+  name?: string
+  script?: string
 
   constructor(
     private navController: NavController,

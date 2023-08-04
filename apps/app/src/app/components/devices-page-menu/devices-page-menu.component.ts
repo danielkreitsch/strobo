@@ -3,7 +3,7 @@ import {AlertController, NavController, PopoverController} from "@ionic/angular"
 import {DeviceService} from "../../services/device.service";
 
 @Component({
-  selector: 'app-devices-page-menu',
+  selector: 'strobo-devices-page-menu',
   templateUrl: './devices-page-menu.component.html',
   styleUrls: ['./devices-page-menu.component.scss'],
 })

@@ -4,14 +4,14 @@ import {environment} from "../../../environments/environment"
 import {AuthService} from "../../services/auth.service"
 
 @Component({
-    selector: 'app-login',
+    selector: 'strobo-login',
     templateUrl: './login.page.html',
     styleUrls: ['./login.page.scss']
 })
 export class LoginPage implements OnInit
 {
-    passwordErrorVisible: boolean = false
-    passwordInputText: string
+    passwordErrorVisible = false
+    passwordInputText = ""
 
     constructor(
         private authService: AuthService

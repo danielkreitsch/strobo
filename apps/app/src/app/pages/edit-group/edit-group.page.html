@@ -7,11 +7,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="group">
   <ion-item class="ion-margin-top custom-item round-edge">
     <ion-label [hidden]="!nameMissingErrorDisplayed" position="stacked" color="danger">Name fehlt</ion-label>
     <ion-label [hidden]="nameMissingErrorDisplayed" position="stacked" color="primary">Name</ion-label>
-    <ion-input [value]="group?.name" (input)="updateGroupName(group, $event)"></ion-input>
+    <ion-input [value]="group!.name" (input)="updateGroupName(group!, $event)"></ion-input>
   </ion-item>
   <h4>Geräte</h4>
   <ion-grid>

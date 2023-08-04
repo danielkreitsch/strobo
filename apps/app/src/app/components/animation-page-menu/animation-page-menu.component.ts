@@ -4,7 +4,7 @@ import {AlertController, NavController, NavParams, PopoverController} from "@ion
 import {AnimationService} from "../../services/animation.service";
 
 @Component({
-  selector: 'app-animation-page-menu',
+  selector: 'strobo-animation-page-menu',
   templateUrl: './animation-page-menu.component.html',
   styleUrls: ['./animation-page-menu.component.scss'],
 })
@@ -53,7 +53,7 @@ export class AnimationPageMenuComponent implements OnInit
           text: 'Löschen',
           handler: () =>
           {
-            this.animationService.deleteAnimation(this.animation.id).then(() =>
+            this.animationService.deleteAnimation(this.animation.id!).then(() =>
             {
               this.navController.navigateRoot(['/animations'])
             })

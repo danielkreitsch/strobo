@@ -11,18 +11,18 @@ import {Color} from "../../domain/color"
 import {GlobalLightSettingsService} from "../../services/global-light-settings.service"
 
 @Component({
-    selector: 'app-groups',
+    selector: 'strobo-groups',
     templateUrl: './devices.page.html',
     styleUrls: ['./devices.page.scss']
 })
 export class DevicesPage implements OnInit
 {
-    grouplessDevices: Device[]
-    groups: Group[]
-    buttonActionDisabled: boolean
+    grouplessDevices: Device[] = []
+    groups: Group[] = []
+    buttonActionDisabled = false
     lastPressEvent = null
     popoverLock = false
-    disableButtonTimer = null
+    disableButtonTimer?: number
     blockGroupToggleReaction = false
 
     quotes = [
@@ -154,7 +154,7 @@ export class DevicesPage implements OnInit
 
     onCookingModeClick()
     {
-        let device = this.findDevice("kuechentheke")
+        const device = this.findDevice("kuechentheke")
         if (device != null)
         {
             console.log("found")
@@ -172,18 +172,18 @@ export class DevicesPage implements OnInit
         }
     }
 
-    findDevice(deviceId: string): Device
+    findDevice(deviceId: string): Device | null
     {
-        for (let device of this.grouplessDevices)
+        for (const device of this.grouplessDevices)
         {
             if (device.id == deviceId)
             {
                 return device
             }
         }
-        for (let group of this.groups)
+        for (const group of this.groups)
         {
-            for (let device of group.devices)
+            for (const device of group.devices)
             {
                 if (device.id == deviceId)
                 {
@@ -319,7 +319,7 @@ export class DevicesPage implements OnInit
         let lastQuote = ""
         for (let i = 0; i < 50; i++)
         {
-            let randomQuote = this.quotes[Math.floor(Math.random() * this.quotes.length)]
+            const randomQuote = this.quotes[Math.floor(Math.random() * this.quotes.length)]
             if (randomQuote != lastQuote)
             {
                 this.quotesString += randomQuote
@@ -350,10 +350,10 @@ export class DevicesPage implements OnInit
             {
                 intervalSum += this.beatSyncs[i + 1] - this.beatSyncs[i]
             }
-            let averageInterval = intervalSum / (this.beatSyncs.length - 1)
+            const averageInterval = intervalSum / (this.beatSyncs.length - 1)
             console.log("Interval: " + averageInterval + " ms (" + (this.beatSyncs.length - 1) + " values)")
 
-            let bpm = 60 * 1000 / averageInterval
+            const bpm = 60 * 1000 / averageInterval
             this.globalLightSettingsService.setBpm(bpm)
             console.log("BPM: " + bpm)
         }

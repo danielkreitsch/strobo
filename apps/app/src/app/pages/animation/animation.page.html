@@ -14,11 +14,6 @@
 
 <ion-content class="ion-padding-horizontal">
   <h2>Skript</h2>
-
-  <!-- Show script if available -->
   <p style="font-family: Consolas">{{animation?.script}}</p>
-
-  <!-- Show info if there is no script -->
-  <p [hidden]="animation?.script != null && animation.script.length > 0">Kein Skript vorhanden</p>
-
+  <p [hidden]="animation?.script!.length > 0">Kein Skript vorhanden</p>
 </ion-content>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-music-settings',
+  selector: 'strobo-music-settings',
   templateUrl: './music-settings.page.html',
   styleUrls: ['./music-settings.page.scss'],
 })

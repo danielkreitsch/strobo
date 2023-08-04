@@ -6,18 +6,13 @@ import {HammerGestureConfig} from '@angular/platform-browser'
  * This class overrides the default Angular gesture config.
  */
 @Injectable()
-export class IonicGestureConfig extends HammerGestureConfig
-{
-  buildHammer(element: HTMLElement)
-  {
-    if (window)
-    {
+export class IonicGestureConfig extends HammerGestureConfig {
+  override buildHammer(element: HTMLElement) {
+    if (window) {
       const mc = new (<any>window).Hammer(element)
 
-      for (const eventName in this.overrides)
-      {
-        if (eventName)
-        {
+      for (const eventName in this.overrides) {
+        if (eventName) {
           mc.get(eventName).set(this.overrides[eventName])
         }
       }

@@ -6,13 +6,13 @@ import {AnimationService} from "../../services/animation.service";
 import {AnimationPageMenuComponent} from "../../components/animation-page-menu/animation-page-menu.component";
 
 @Component({
-  selector: 'app-animation',
+  selector: 'strobo-animation',
   templateUrl: './animation.page.html',
   styleUrls: ['./animation.page.scss'],
 })
 export class AnimationPage implements OnInit
 {
-  animation: Animation
+  animation?: Animation
 
   constructor(
     private router: Router,
@@ -30,7 +30,7 @@ export class AnimationPage implements OnInit
 
   ionViewWillEnter()
   {
-    this.animationService.getAnimation(this.route.snapshot.paramMap.get('id')).then(animation =>
+    this.animationService.getAnimation(this.route.snapshot.paramMap.get('id')!).then(animation =>
     {
       this.animation = animation
     })

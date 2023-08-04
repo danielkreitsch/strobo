@@ -5,7 +5,7 @@ import {GroupService} from "../../services/group.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-group-page-menu',
+  selector: 'strobo-group-page-menu',
   templateUrl: './group-page-menu.component.html',
   styleUrls: ['./group-page-menu.component.scss'],
 })
@@ -55,7 +55,7 @@ export class GroupPageMenuComponent implements OnInit
           text: 'Löschen',
           handler: () =>
           {
-            this.groupService.deleteGroup(this.group.id).then(() =>
+            this.groupService.deleteGroup(this.group.id!).then(() =>
             {
               this.groupService.invalidateCache()
               this.navController.navigateRoot(['/devices'])

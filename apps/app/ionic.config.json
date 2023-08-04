@@ -1,5 +1,5 @@
 {
-  "name": "strobo-app",
+  "name": "app",
   "integrations": {
     "capacitor": {}
   },

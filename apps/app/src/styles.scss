@@ -1,0 +1,150 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import '~@ionic/angular/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+/* Custom code */
+
+.spin-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.round-edge {
+  --border-radius: 5px;
+}
+
+.round-edge-top {
+  --border-radius: 5px 5px 0 0;
+}
+
+.round-edge-bottom {
+  --border-radius: 0 0 5px 5px;
+}
+
+.ios .list-main-icon {
+  margin-left: -10px;
+}
+
+.new-device-button {
+  ion-label {
+    width: 100%;
+    height: 52px;
+    display: flex !important;
+    align-items: center;
+  }
+}
+
+.animation-button {
+  &.active {
+    --ion-item-background: #424242;
+    font-weight: bold;
+  }
+
+  ion-label {
+    width: 100%;
+    height: 38px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.color-button {
+  &.active {
+    --ion-item-background: #424242;
+  }
+
+  ion-icon {
+    margin: 0 auto;
+  }
+}
+
+.custom-item {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+ion-col .custom-item {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+h4 {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+
+ion-toggle {
+  width: 70px;
+  height: 40px;
+  --border-radius: 5px;
+  --handle-width: 40px;
+  --handle-height: 40px;
+  --handle-border-radius: 5px;
+}
+
+.empty-page {
+  display: flex;
+  flex-basis: available;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.schlafender-bene {
+  width: 80%;
+  margin: 0 auto;
+
+  img {
+    border-radius: 5px;
+    opacity: 80%;
+    filter: saturate(40%);
+  }
+}
+
+// iOS
+
+.ios {
+  .custom-item {
+    margin-left: 0px;
+    margin-right: 15px;
+  }
+
+  ion-col .custom-item {
+    margin-left: -10px;
+    margin-right: 5px;
+  }
+}
+
+.alert-wrapper {
+  background-color: #212121 !important;
+}

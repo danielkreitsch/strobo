@@ -5,7 +5,7 @@ import {Device} from "../../domain/device";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-device-page-menu',
+  selector: 'strobo-device-page-menu',
   templateUrl: './device-page-menu.component.html',
   styleUrls: ['./device-page-menu.component.scss'],
 })
@@ -55,7 +55,7 @@ export class DevicePageMenuComponent implements OnInit
           text: 'Löschen',
           handler: () =>
           {
-            this.deviceService.unregisterDevice(this.device.id).then(() =>
+            this.deviceService.unregisterDevice(this.device.id!).then(() =>
             {
               this.deviceService.invalidateCache()
                this.navController.navigateRoot(['/devices'])

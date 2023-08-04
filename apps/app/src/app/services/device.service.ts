@@ -9,161 +9,125 @@ import {Color} from "../domain/color";
 @Injectable({
   providedIn: 'root'
 })
-export class DeviceService
-{
-  constructor(private http: HttpClient)
-  {
+export class DeviceService {
+  constructor(private http: HttpClient) {
   }
 
   onInvalidateCache = new Subject()
 
-  invalidateCache()
-  {
-    this.onInvalidateCache.next()
+  invalidateCache() {
+    this.onInvalidateCache.next(null)
   }
 
-  getDevices(registered: boolean = null, connected: boolean = null, inAGroup: boolean = null): Promise<Device[]>
-  {
+  getDevices(registered?: boolean, connected?: boolean, inAGroup?: boolean): Promise<Device[]> {
     const params = new HttpParams()
 
-    if (registered != null)
-    {
+    if (registered != null) {
       params.set('registered', registered)
     }
 
-    if (connected != null)
-    {
+    if (connected != null) {
       params.set('connected', connected)
     }
 
-    if (inAGroup != null)
-    {
-      params.set('inAGroup', registered)
+    if (inAGroup != null) {
+      params.set('inAGroup', inAGroup)
     }
 
-    return new Promise(resolve =>
-    {
-      this.http.get<DeviceList>(environment.backend.serviceUrl + '/devices', {params: params}).subscribe(result =>
-      {
+    return new Promise(resolve => {
+      this.http.get<DeviceList>(environment.backend.serviceUrl + '/devices', {params: params}).subscribe(result => {
         resolve(result.devices)
       })
     })
   }
 
-  getConnectedUnregisteredDevices(): Promise<Device[]>
-  {
-    return new Promise(resolve =>
-    {
+  getConnectedUnregisteredDevices(): Promise<Device[]> {
+    return new Promise(resolve => {
       this.http.get<DeviceList>(environment.backend.serviceUrl + '/devices?connected=true&registered=false').subscribe(
-        result =>
-        {
+        result => {
           resolve(result.devices)
         },
-        error =>
-        {
+        error => {
           resolve(new Array<Device>())
         })
     })
   }
 
-  getRegisteredDevices(): Promise<Device[]>
-  {
-    return new Promise(resolve =>
-    {
+  getRegisteredDevices(): Promise<Device[]> {
+    return new Promise(resolve => {
       this.http.get<DeviceList>(environment.backend.serviceUrl + '/devices?registered=true').subscribe(
-        result =>
-        {
+        result => {
           resolve(result.devices)
         },
-        error =>
-        {
+        error => {
           resolve(new Array<Device>())
         })
     })
   }
 
-  getRegisteredGrouplessDevices(): Promise<Device[]>
-  {
-    return new Promise(resolve =>
-    {
+  getRegisteredGrouplessDevices(): Promise<Device[]> {
+    return new Promise(resolve => {
       this.http.get<DeviceList>(environment.backend.serviceUrl + '/devices?registered=true&inAGroup=false').subscribe(
-        result =>
-        {
+        result => {
           resolve(result.devices)
         },
-        error =>
-        {
+        error => {
           resolve(new Array<Device>())
         })
     })
   }
 
-  getDevice(deviceId: string): Promise<Device>
-  {
-    return new Promise(resolve =>
-    {
-      this.http.get<Device>(environment.backend.serviceUrl + '/devices/' + deviceId).subscribe(device =>
-      {
+  getDevice(deviceId: string): Promise<Device> {
+    return new Promise(resolve => {
+      this.http.get<Device>(environment.backend.serviceUrl + '/devices/' + deviceId).subscribe(device => {
         resolve(device)
       })
     })
   }
 
-  getCurrentDevice(): Promise<Device>
-  {
-    return new Promise(resolve =>
-    {
-      this.http.get<Device>(environment.backend.serviceUrl + '/devices/current').subscribe(device =>
-      {
+  getCurrentDevice(): Promise<Device> {
+    return new Promise(resolve => {
+      this.http.get<Device>(environment.backend.serviceUrl + '/devices/current').subscribe(device => {
         resolve(device)
       })
     })
   }
 
-  registerDevice(device: Device)
-  {
-    return new Promise(resolve =>
-    {
-      this.http.post(environment.backend.serviceUrl + '/devices/' + device.id + '/register', device).subscribe(() =>
-      {
+  registerDevice(device: Device) {
+    return new Promise(resolve => {
+      this.http.post(environment.backend.serviceUrl + '/devices/' + device.id + '/register', device).subscribe(() => {
         resolve(null)
       })
     })
   }
 
-  updateDevice(device: Device)
-  {
-    return new Promise(resolve =>
-    {
+  updateDevice(device: Device) {
+    return new Promise(resolve => {
       this.http.put(environment.backend.serviceUrl + '/devices/' + device.id,
         new UpdateDeviceParams(device.name, device.active, device.brightness, device.color, device.animation?.id, device.timeAdjustment)
-      ).subscribe(() =>
-      {
+      ).subscribe(() => {
         resolve(null)
       });
     });
   }
 
-  unregisterDevice(id: string)
-  {
-    return new Promise(resolve =>
-    {
-      this.http.post(environment.backend.serviceUrl + '/devices/' + id + '/unregister', null).subscribe(() =>
-      {
+  unregisterDevice(id: string) {
+    return new Promise(resolve => {
+      this.http.post(environment.backend.serviceUrl + '/devices/' + id + '/unregister', null).subscribe(() => {
         resolve(null)
       });
     });
   }
 }
 
-export class UpdateDeviceParams
-{
-  constructor(public name: string = null,
-              public active: boolean = null,
-              public brightness: number = null,
-              public color: Color = null,
-              public animationId: String = null,
-              public timeAdjustment: number = null)
-  {
+export class UpdateDeviceParams {
+  constructor(
+    public name?: string,
+    public active?: boolean,
+    public brightness?: number,
+    public color?: Color,
+    public animationId?: string,
+    public timeAdjustment?: number
+  ) {
   }
 }

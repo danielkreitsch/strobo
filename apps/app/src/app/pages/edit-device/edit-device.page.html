@@ -7,11 +7,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="device !== null">
   <ion-item style="margin: 10px; --border-radius: 5px;">
     <ion-label [hidden]="!nameMissingErrorDisplayed" position="stacked" color="danger">Name fehlt</ion-label>
     <ion-label [hidden]="nameMissingErrorDisplayed" position="stacked" color="primary">Name</ion-label>
-    <ion-input [value]="device?.name" (input)="updateDeviceName(device, $event)"></ion-input>
+    <ion-input [value]="device!.name" (input)="updateDeviceName(device!, $event)"></ion-input>
   </ion-item>
 </ion-content>
 
