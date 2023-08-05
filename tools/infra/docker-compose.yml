@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysql:
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: strobo
+      MARIADB_USER: strobo
+      MARIADB_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: password
+      UPLOAD_LIMIT: 100G
+    ports:
+      - "3307:80"
+    depends_on:
+      - mysql

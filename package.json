@@ -2,7 +2,10 @@
   "name": "@strobo/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "infra": "nx exec -- docker-compose -f tools/infra/docker-compose.yml up"
+  },
+  "nx": {},
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.1.0",
