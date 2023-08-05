@@ -47,6 +47,7 @@
     "@nx/linter": "16.6.0",
     "@nx/workspace": "16.6.0",
     "@nxext/ionic-angular": "^16.2.0",
+    "@nxrocks/nx-spring-boot": "^8.0.3",
     "@schematics/angular": "~16.1.0",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",

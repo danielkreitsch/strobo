@@ -2,6 +2,7 @@ server:
   port: ${PORT:1337}
 spring:
   main.banner-mode: 'off'
+  output.ansi.enabled: always
   datasource:
     url: 'jdbc:mariadb://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE}?autoReconnect=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true'
     username: ${MYSQL_USER}
@@ -13,7 +14,7 @@ spring:
     show-sql: false
     open-in-view: false
   rabbitmq:
-    host: ${RABBITMQ_HOST}
+    host: ${RABBITMQ_HOST:localhost}
     port: ${RABBITMQ_PORT:5672}
     virtual-host: ${RABBITMQ_VIRTUAL_HOST}
     username: ${RABBITMQ_USER}
@@ -24,4 +25,4 @@ logging:
   level:
     root: info
     org.springframework: info
-    com.danielkreitsch: ${LOG_LEVEL:info}
+    dev.glowdragon: ${LOG_LEVEL:info}
