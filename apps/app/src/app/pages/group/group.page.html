@@ -35,7 +35,7 @@
           <ion-item
             lines="none"
             class="animation-button round-edge"
-            [class.active]="group.animation == null"
+            [class.active]="group.animation === null"
             button
             (click)="setAnimation(null)"
           >
@@ -49,7 +49,7 @@
           <ion-item
             lines="none"
             class="animation-button round-edge"
-            [class.active]="animation.id == group.animation?.id"
+            [class.active]="animation.id === group.animation?.id"
             button
             (click)="setAnimation(animation)"
           >

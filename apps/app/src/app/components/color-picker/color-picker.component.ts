@@ -14,7 +14,7 @@ export class ColorPickerComponent implements OnInit {
   initialColor: Color = new Color(255, 255, 255, 0);
 
   @Input()
-  size: number = 300;
+  size = 300;
 
   @Output()
   colorInput: EventEmitter<Color> = new EventEmitter<Color>();
