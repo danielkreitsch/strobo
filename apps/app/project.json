@@ -34,6 +34,7 @@
       },
       "configurations": {
         "production": {
+          "buildOptimizer": false,
           "fileReplacements": [
             {
               "replace": "apps/app/src/environments/environment.ts",
