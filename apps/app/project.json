@@ -10,13 +10,14 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/app",
+        "outputPath": "apps/app/build",
         "index": "apps/app/src/index.html",
         "main": "apps/app/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/app/tsconfig.app.json",
         "assets": [
           "apps/app/src/assets",
+          "apps/app/src/_redirects",
           {
             "glob": "**/*.svg",
             "input": "node_modules/ionicons/dist/ionicons/svg",
@@ -179,6 +180,13 @@
         "android": {
           "cmd": "update android"
         }
+      }
+    },
+    "deploy": {
+      "executor": "@netlify-builder/deploy:deploy",
+      "options": {
+        "outputPath": "apps/app/build",
+        "siteId": "460c62ed-fb20-47cf-89cf-21a7406fa9b0"
       }
     }
   }

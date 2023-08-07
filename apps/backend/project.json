@@ -74,6 +74,13 @@
       "options": {
         "root": "apps/backend"
       }
+    },
+    "deploy": {
+      "executor": "@glowdragon/nx-dokku:deploy",
+      "options": {
+        "host": "s1.glowdragon.de",
+        "app": "strobo-backend"
+      }
     }
   },
   "tags": []
