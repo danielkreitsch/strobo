@@ -9,30 +9,22 @@
       "options": {
         "root": "apps/backend"
       },
-      "dependsOn": [
-        "^install"
-      ],
-      "outputs": [
-        "{workspaceRoot}/apps/backend/build"
-      ]
+      "dependsOn": ["^install"],
+      "outputs": ["{workspaceRoot}/apps/backend/build"]
     },
     "install": {
       "executor": "@nxrocks/nx-spring-boot:install",
       "options": {
         "root": "apps/backend"
       },
-      "outputs": [
-        "{workspaceRoot}/apps/backend/build"
-      ]
+      "outputs": ["{workspaceRoot}/apps/backend/build"]
     },
     "test": {
       "executor": "@nxrocks/nx-spring-boot:test",
       "options": {
         "root": "apps/backend"
       },
-      "outputs": [
-        "{workspaceRoot}/apps/backend/build"
-      ]
+      "outputs": ["{workspaceRoot}/apps/backend/build"]
     },
     "clean": {
       "executor": "@nxrocks/nx-spring-boot:clean",
@@ -57,9 +49,7 @@
       "options": {
         "root": "apps/backend"
       },
-      "outputs": [
-        "{workspaceRoot}/apps/backend/build"
-      ]
+      "outputs": ["{workspaceRoot}/apps/backend/build"]
     },
     "build-info": {
       "executor": "@nxrocks/nx-spring-boot:build-info",
